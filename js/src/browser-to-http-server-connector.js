@@ -33,12 +33,13 @@ var setVal = function (config, data) {
             };
         }
         else {
-            if (r.data.id) {
+            var rKeys = Object.keys(r.data);
+            if (rKeys.includes("id")) {
                 return {
                     id: (typeof r.data.id === "number") ? r.data.id : parseInt(r.data.id)
                 };
             }
-            else if (r.data.error) {
+            else if (rKeys.includes("error")) {
                 return __assign({
                     error: r.data.error,
                 }, (r.data.details ? { details: r.data.details } : {}));
@@ -76,7 +77,8 @@ var regIter = function (config) {
             };
         }
         else {
-            if (r.data.iter) {
+            var rKeys = Object.keys(r.data);
+            if (rKeys.includes("iter")) {
                 return (typeof r.data.iter === "string")
                     ? {
                         iter: r.data.iter
@@ -87,7 +89,7 @@ var regIter = function (config) {
                             + (typeof r.data.iter)
                     };
             }
-            else if (r.data.error) {
+            else if (rKeys.includes("error")) {
                 return __assign({
                     error: r.data.error,
                 }, (r.data.details ? { details: r.data.details } : {}));
@@ -125,7 +127,8 @@ var reqOneNewVal = function (config, iter) {
             };
         }
         else {
-            if (r.data.val) {
+            var rKeys = Object.keys(r.data);
+            if (rKeys.includes("val")) {
                 return (typeof r.data.val === "object")
                     ? {
                         val: r.data.val
@@ -136,7 +139,7 @@ var reqOneNewVal = function (config, iter) {
                             + (typeof r.data.val)
                     };
             }
-            else if (r.data.error) {
+            else if (rKeys.includes("error")) {
                 return __assign({
                     error: r.data.error,
                 }, (r.data.details ? { details: r.data.details } : {}));
@@ -174,7 +177,8 @@ var reqBatchNewVals = function (config, iter, count) {
             };
         }
         else {
-            if (r.data.vals) {
+            var rKeys = Object.keys(r.data);
+            if (rKeys.includes("vals")) {
                 return (Array.isArray(r.data.vals))
                     ? {
                         vals: r.data.vals
@@ -185,7 +189,7 @@ var reqBatchNewVals = function (config, iter, count) {
                             + (typeof r.data.vals)
                     };
             }
-            else if (r.data.error) {
+            else if (rKeys.includes("error")) {
                 return __assign({
                     error: r.data.error,
                 }, (r.data.details ? { details: r.data.details } : {}));

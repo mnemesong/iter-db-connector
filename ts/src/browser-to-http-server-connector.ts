@@ -28,11 +28,12 @@ export const setVal = (
                     details: "No data in response"
                 }
             } else {
-                if (r.data.id) {
+                const rKeys = Object.keys(r.data)
+                if (rKeys.includes("id")) {
                     return {
                         id: (typeof r.data.id === "number") ? r.data.id : parseInt(r.data.id)
                     }
-                } else if (r.data.error) {
+                } else if (rKeys.includes("error")) {
                     return {
                         ...{
                             error: r.data.error,
@@ -73,7 +74,8 @@ export const regIter = (
                     details: "No data in response"
                 }
             } else {
-                if (r.data.iter) {
+                const rKeys = Object.keys(r.data)
+                if (rKeys.includes("iter")) {
                     return (typeof r.data.iter === "string")
                         ? {
                             iter: r.data.iter
@@ -83,7 +85,7 @@ export const regIter = (
                             details: "Invalid iter format: getted value type of "
                                 + (typeof r.data.iter)
                         }
-                } else if (r.data.error) {
+                } else if (rKeys.includes("error")) {
                     return {
                         ...{
                             error: r.data.error,
@@ -125,7 +127,8 @@ export const reqOneNewVal = (
                     details: "No data in response"
                 }
             } else {
-                if (r.data.val) {
+                const rKeys = Object.keys(r.data)
+                if (rKeys.includes("val")) {
                     return (typeof r.data.val === "object")
                         ? {
                             val: r.data.val
@@ -135,7 +138,7 @@ export const reqOneNewVal = (
                             details: "Invalid val format: getted value type of "
                                 + (typeof r.data.val)
                         }
-                } else if (r.data.error) {
+                } else if (rKeys.includes("error")) {
                     return {
                         ...{
                             error: r.data.error,
@@ -178,7 +181,8 @@ export const reqBatchNewVals = (
                     details: "No data in response"
                 }
             } else {
-                if (r.data.vals) {
+                const rKeys = Object.keys(r.data)
+                if (rKeys.includes("vals")) {
                     return (Array.isArray(r.data.vals))
                         ? {
                             vals: r.data.vals
@@ -188,7 +192,7 @@ export const reqBatchNewVals = (
                             details: "Invalid val format: getted value type of "
                                 + (typeof r.data.vals)
                         }
-                } else if (r.data.error) {
+                } else if (rKeys.includes("error")) {
                     return {
                         ...{
                             error: r.data.error,
